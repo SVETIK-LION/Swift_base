@@ -45,3 +45,76 @@ func getArray(number: Int) -> [Int] {
 }
 
 print(getArray(number: 4))
+
+
+// Домашнее задание 4
+
+// 1) Создать перечисление с видами пиццы (хотя бы 4-5 кейсов).
+
+enum PizzaType: String {
+    case fourCheeses = "Пицца 4 сыра"
+    case beef = "Пицца с говядиной"
+    case margarita = "Пицца \"Маргарита\""
+    case chickenPineapple = "Пицца с курицей и ананасами"
+    case vegetarian = "Пицца \"Вегетарианская\""
+}
+
+// 2) Создать структуру пиццы, она должна содержать стоимость, вид пиццы, толстое или тонкое тесто и добавки (например, дополнительно добавить пепперони, помидоры, сыр). Вид пиццы должен быть вложенным типом для структуры пиццы. Подсказка: добавки лучше также сделать перечислением.
+
+enum Supplements {
+    case pepper
+    case tomatoes
+    case yellowCheese
+    case mushrooms
+    case pineapple
+    case beef
+    case chicken
+    case parmesan
+    case cheeseWithMold
+    case potatoes
+    case gaudaCheese
+}
+
+struct PizzaStruct {
+    var price: Double
+    var type: PizzaType
+    var dough: String
+    var supplements: [Supplements]
+}
+
+// 3) Создать класс пиццерии, добавить массив с возможными видами пиццы. Переменная с массивом должна быть приватной. Массив задаётся в инициализаторе.
+// 4)Написать в классе пиццерии функции для добавления нового вида пиццы и для получения всех доступных пицц.
+
+class Pizzeria {
+    private var menu: [PizzaStruct]
+    
+    init(menu: [PizzaStruct]) {
+        self.menu = menu
+    }
+    
+    func addPizza(pizza: PizzaStruct) {
+        menu.append(pizza)
+    }
+    
+    func getMenu() -> [PizzaStruct] {
+        return menu
+    }
+}
+
+// 5) Создать экземпляр класса пиццерии и добавить в него несколько видов пицц.
+
+let margarita = PizzaStruct(price: 100, type: .margarita, dough: "thin", supplements: [Supplements.tomatoes, Supplements.yellowCheese])
+let fourCheeses = PizzaStruct(price: 250, type: .fourCheeses, dough: "thin", supplements: [Supplements.cheeseWithMold, Supplements.parmesan, Supplements.yellowCheese, Supplements.gaudaCheese])
+let beef = PizzaStruct(price: 300, type: .beef, dough: "thick", supplements: [Supplements.beef, Supplements.potatoes, Supplements.yellowCheese])
+let chickenPineapple = PizzaStruct(price: 150, type: .chickenPineapple, dough: "thick", supplements: [Supplements.chicken, Supplements.pineapple, Supplements.yellowCheese])
+let vegetarian = PizzaStruct(price: 100, type: .vegetarian, dough: "thick", supplements: [Supplements.pepper, Supplements.tomatoes, Supplements.mushrooms])
+
+var coolPizzeria = Pizzeria(menu: [beef, fourCheeses])
+coolPizzeria.addPizza(pizza: fourCheeses)
+coolPizzeria.addPizza(pizza: margarita)
+coolPizzeria.addPizza(pizza: chickenPineapple)
+coolPizzeria.addPizza(pizza: vegetarian)
+
+let menu = coolPizzeria.getMenu()
+print(menu)
+                        
