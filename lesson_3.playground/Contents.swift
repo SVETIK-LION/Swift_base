@@ -190,3 +190,10 @@ coolPizzeria.close()
 
 let menu = coolPizzeria.getMenu()
 print(menu)
+
+func numsSubtract<T: Numeric>(a: T, b: T) -> T {
+    return a - b
+}
+
+print(numsSubtract(a: 4, b: 3))
+print(numsSubtract(a: 4, b: 1.5))
