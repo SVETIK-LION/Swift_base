@@ -244,6 +244,8 @@ struct PizzeriaWorker {
     var post: ProfessionEnum
 }
  
+var cashierWorker = PizzeriaWorker(name: "Майкл", salary: 60000, post: ProfessionEnum.cashier)
+var chefWorker = PizzeriaWorker(name: "Сабина", salary: 70000, post: ProfessionEnum.chef)
 
 class Pizzeria {
     private var pizzeriaName: String
@@ -254,7 +256,7 @@ class Pizzeria {
     
     private var tables: [Table]
      
-    init(pizzeriaName: String, workers: [PizzeriaWorker], menu: [Dish], tables: [Table]) {
+    init(pizzeriaName: String = "Cool Pizzeria", workers: [PizzeriaWorker] = [cashierWorker, chefWorker], menu: [Dish] = [fourCheeses, margarita], tables: [Table]) {
         self.pizzeriaName = pizzeriaName
         self.workers = workers
         self.menu = menu
@@ -262,9 +264,9 @@ class Pizzeria {
     }
     
     convenience init() {
-        let tableSmall: Table = Table(chairs: 2, cafe: self.pizzeriaName)
-        let tableMedium: Table = Table(chairs: 4, cafe: self.pizzeriaName)
-        let tableLarge: Table = Table(chairs: 8, cafe: self.pizzeriaName)
+        let tableSmall: Table = Table(chairs: 2, cafe: "CoolPizza")
+        let tableMedium: Table = Table(chairs: 4, cafe: "CoolPizza")
+        let tableLarge: Table = Table(chairs: 8, cafe: "CoolPizza")
         self.init(tables: [tableSmall, tableMedium, tableLarge])
     }
      
@@ -308,3 +310,8 @@ class Table {
         return true
     }
 }
+
+
+var table1 = Table(chairs: 4, cafe: "CoolPizza")
+print(table1.canSitDown(guestdAmount: 5))
+print(table1.canSitDown(guestdAmount: 3))
